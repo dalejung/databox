@@ -13,14 +13,14 @@ def main():
     flag = args.flag
 
     output = gen_output(path, flag)
-    print repr(output)
+    print output
 
 def gen_output(path, flag):
     module_ns = get_module_name(path)
     if module_ns is None:
-        return path
+        return repr(path)
     if flag:
-        return "-m " + module_ns
+        return "-m " + repr(module_ns)
     return module_ns
 
 def get_module_name(path):
