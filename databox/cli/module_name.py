@@ -13,7 +13,7 @@ def main():
     flag = args.flag
 
     output = gen_output(path, flag)
-    print output
+    print repr(output)
 
 def gen_output(path, flag):
     module_ns = get_module_name(path)
