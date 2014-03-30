@@ -37,6 +37,10 @@ def get_module_name(path):
         path, name = path.rsplit(os.path.sep, 1)
         names.append(name)
 
+    # means that file was not within a package
+    if len(names) == 1:
+        return None
+
     module_ns = '.'.join(reversed(names))
     loader = pkgutil.get_loader(module_ns)
     # make sure that the generated ns exists and points to original file
