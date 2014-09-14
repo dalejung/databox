@@ -16,7 +16,11 @@ def main():
     print output
 
 def gen_output(path, flag):
-    module_ns = get_module_name(path)
+    try:
+        module_ns = get_module_name(path)
+    except:
+        module_ns = None
+
     if module_ns is None:
         return repr(path)
     if flag:
