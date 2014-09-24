@@ -8,7 +8,7 @@ def module_name():
     args = parser.parse_args()
     path = args.path
 
-    print path
+    print(path)
 
 if __name__ == '__main__':
     main()

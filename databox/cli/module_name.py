@@ -13,7 +13,7 @@ def main():
     flag = args.flag
 
     output = gen_output(path, flag)
-    print output
+    print(output)
 
 def gen_output(path, flag):
     try:
@@ -48,7 +48,7 @@ def get_module_name(path):
     module_ns = '.'.join(reversed(names))
     loader = pkgutil.get_loader(module_ns)
     # make sure that the generated ns exists and points to original file
-    if loader and loader.filename == orig_path:
+    if loader and loader.get_filename() == orig_path:
         return module_ns
     return None
 

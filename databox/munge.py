@@ -7,7 +7,7 @@ class MungeManager(object):
         self.operations.append(op)
 
     def exit(self):
-        print self.operations
+        print(self.operations)
 
 class MungeOp(object):
     def __init__(self, manager, op_name, top_level=True):
