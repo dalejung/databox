@@ -1,6 +1,7 @@
 import argparse
 import os
 import pkgutil
+import imp
 
 def main():
     parser = argparse.ArgumentParser(description="");
@@ -56,12 +57,15 @@ def get_module_name(path, debug):
         return None
 
     module_ns = '.'.join(reversed(names))
-    loader = pkgutil.get_loader(module_ns)
+    root_package = names[-1]
+    bits = imp.find_module(root_package)
+    root_path = bits[1]
 
-    # make sure that the generated ns exists and points to original file
-    # loader will have realpath.
+    # instead of loading, we use simple heuristic. if root package
+    # exists and in same location as orig_path, then we're good
     orig_path = os.path.realpath(orig_path)
-    if loader and loader.get_filename() == orig_path:
+    root_path = os.path.realpath(root_path)
+    if orig_path.startswith(root_path):
         return module_ns
     return None
 
